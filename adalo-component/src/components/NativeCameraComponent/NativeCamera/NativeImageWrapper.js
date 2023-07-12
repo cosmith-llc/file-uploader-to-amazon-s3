@@ -5,6 +5,12 @@ import Spinner from '../Spinner';
 import NativeImage from './NativeImage';
 import RNFB from 'rn-fetch-blob';
 
+// Secured version
+const awsAPILink = 'http://platybase.site/api/upload'
+
+// No Secured Version
+//const awsAPILink = 'http://ec2-100-24-118-157.compute-1.amazonaws.com/api/upload';
+
 const re = /(?:\.([^.]+))?$/;
 const getFilenameFromPath = path => path.substring(path.lastIndexOf('/') + 1);
 const getExtensionFromFilename = fileName => re.exec(fileName)[1];
@@ -33,7 +39,7 @@ const storeImage = async (localUri, contentType) => {
     }
 
     const uri = Platform.OS === 'ios' ? localUri.replace("file://", "") : localUri;
-    const { data } = await RNFB.fetch('POST', 'http://ec2-100-24-118-157.compute-1.amazonaws.com/api/upload', {
+    const { data } = await RNFB.fetch('POST', awsAPILink, {
         'Content-Type' : 'multipart/form-data',
       }, [
         { name : requestFilename, filename : requestFilename, type: contentType || 'image/jpg', data: RNFB.wrap(uri)},

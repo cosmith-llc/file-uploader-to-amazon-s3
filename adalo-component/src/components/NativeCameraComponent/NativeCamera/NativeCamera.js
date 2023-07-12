@@ -23,14 +23,11 @@ import { launchImageLibrary } from 'react-native-image-picker';
 import NativeImageWrapper from './NativeImageWrapper';
 import RNFB from 'rn-fetch-blob';
 
-const awsAPILink = 'http://ec2-100-24-118-157.compute-1.amazonaws.com/api/upload';
-//
-//
-//
-//RNCamera.Constants.VideoCodec['H264']
-//RNCamera.Constants.VideoCodec['JPEG']
-//RNCamera.Constants.VideoCodec['HVEC']
+// Secured version
+const awsAPILink = 'http://platybase.site/api/upload'
 
+// No Secured Version
+//const awsAPILink = 'http://ec2-100-24-118-157.compute-1.amazonaws.com/api/upload';
 
 const contentTypes = {
   'jpeg': 'image/jpeg',
