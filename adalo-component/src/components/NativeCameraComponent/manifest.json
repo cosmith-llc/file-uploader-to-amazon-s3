@@ -1,0 +1,217 @@
+{
+  "displayName": "Native Camera",
+  "defaultWidth": 160,
+  "defaultHeight": 160,
+  "components": "./index.js",
+  "icon": "./video-camera-thumbnail.png",
+  "resizeX": true,
+  "resizeY": true,
+  "props": [
+    {
+      "name": "cameraType",
+      "displayName": "Camera type",
+      "helpText": "Type of the camera at start: front or back",
+      "type":"text",
+      "default": "back",
+      "control": {
+        "type": "menu",
+        "options": [
+        { "label": "Front Camera", "value": "front" },
+        { "label": "Back Camera", "value": "back" }
+      ]}
+    },
+    {
+      "name": "onContentReadyAction",
+      "type": "action",
+      "displayName": "Content Ready Action",
+      "arguments": [
+        {
+          "type": "text",
+          "displayName": "File path"
+        },
+        {
+          "type": "text",
+          "displayName": "operation type"
+        }
+      ],
+      "helpText": "Action when file is ready after photo or video was taked or local file was selected, and local file by **File path** argument can be accessible."
+    }, {
+      "name": "onCancelUploadAction",
+      "type": "action",
+      "displayName": "Cancel Upload Action"
+    }, {
+      "name": "onUploadSuccessAction",
+      "type": "action",
+      "displayName": "Finish Uploading Action",
+      "arguments": [
+        {
+          "type": "text",
+          "displayName": "File url"
+        },
+        {
+          "type": "text",
+          "displayName": "type"
+        }
+      ],
+      "helpText": "Action when upload of video file to S3 is finished and file by **File url** argument can be accessible."
+    }, {
+      "name": "onUploadErrorAction",
+      "type": "action",
+      "displayName": "Error during Uploading Action",
+      "arguments": [
+        {
+          "type": "text",
+          "displayName": "error"
+        }
+      ],
+      "helpText": "Action when error raised during upload of video file to the Store"
+      },
+      {
+        "name": "positioning",
+        "editable": true,
+        "type": "text",
+        "default": "fixedBottom",
+        "control": {
+          "type": "menu",
+          "options": [
+            { "label": "Top", "value": "fixedTop" },
+            { "label": "Bottom", "value": "fixedBottom" },
+            { "label": "None", "value": "none" }
+          ]
+        }
+      } ],
+    "childComponents": [{
+        "name": "videoCamera",
+        "displayName": "Video Camera",
+        "props": [
+          {
+            "name": "videoQuality",
+            "displayName": "Video Quality",
+            "type":"number",
+            "default": 2,
+            "control": {
+              "type": "menu",
+              "options": [
+              { "label": "2160p", "value": 0},
+              { "label": "1080p", "value": 1},
+              { "label": "720p", "value": 2},
+              { "label": "480p", "value": 3},
+              { "label": "4:3", "value": 4}
+            ]}
+          },
+          {
+            "name": "fps",
+            "displayName": "FPS",
+            "helpText": "Frames per second",
+            "type":"number",
+            "default": 30,
+            "control": {
+              "type": "menu",
+              "options": [
+              { "label": "24", "value": 24},
+              { "label": "30", "value": 30},
+              { "label": "60", "value": 60}
+            ]}
+          },
+          {
+            "name": "codec",
+            "displayName": "Codec (iOS only)",
+            "helpText": "Codec for recorded video",
+            "type":"text",
+            "default": "H264",
+            "control": {
+              "type": "menu",
+              "options": [
+              { "label": "H264", "value": "H264"},
+              { "label": "JPEG", "value": "JPEG"},
+              { "label": "HVEC", "value": "HVEC"}
+            ]}
+          },
+          {
+            "name": "unlimitedDuration",
+            "displayName": "Unlimited record duration time",
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "maxDuration",
+            "displayName": "Max video duration in seconds",
+            "type": "number",
+            "default": 15,
+            "control": { "type": "slider", "max": 90, "min": 1 },
+            "enabled": {
+              "unlimitedDuration": false
+            }
+          },
+          {
+            "name": "maxUploadSize",
+            "displayName": "Max uploaded file in MB",
+            "type": "number",
+            "default": 30,
+            "control": { "type": "slider", "max": 1024, "min": 10 },
+            "enabled": {
+              "unlimitedDuration": false
+            }
+          }, 
+          {
+            "name": "showTimer",
+            "displayName": "Show timer",
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "inverseTimer",
+            "displayName": "Countdown timer",
+            "type": "boolean",
+            "default": false,
+            "enabled": {
+              "showTimer": true
+            }
+          },
+          {
+            "name": "micUsageTextOnIOS",
+            "displayName": "Microphone usage text message on iOS",
+            "type":"text",
+            "global": true,
+            "default": "This app needs access to microphone to share your audio"
+          }
+        ]
+    },{
+      "name": "photoCamera",
+      "displayName": "Photo Camera",
+      "props": [
+        {
+          "name": "resizeMode",
+          "displayName": "Resize mode to preview the result photo",
+          "type": "text",
+          "default": "contain",
+          "control": {
+            "type": "menu",
+            "options": [
+              {
+                "label": "Contain",
+                "value": "contain"
+              },
+              {
+                "label": "Cover",
+                "value": "cover"
+              },
+              {
+                "label": "Stretch",
+                "value": "stretch"
+              },
+              {
+                "label": "Repeat",
+                "value": "repeat"
+              },
+              {
+                "label": "Center",
+                "value": "center"
+              } 
+            ]
+          }
+        }
+      ]
+    }
+    ]
+}

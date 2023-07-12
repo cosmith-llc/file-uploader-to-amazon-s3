@@ -1,0 +1,24 @@
+{
+  "name": "@cosmith/adalo-native-camera",
+  "description": "",
+  "version": "0.0.40",
+  "main": "index.js",
+  "license": "ISC",
+  "author": "",
+  "scripts": {
+    "start": "adalo dev",
+    "login": "adalo login",
+    "publish": "adalo publish"
+  },
+  "devDependencies": {
+    "@adalo/cli": "^0.0.55",
+    "react": "^16.9.0",
+    "react-art": "^16.6.0",
+    "react-dom": "^16.9.0",
+    "react-native-web": "^0.9.5"
+  },
+  "dependencies": {
+    "react-native-camera": "^4.2.1",
+    "react-native-vector-icons": "^9.1.0"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "displayName": "Native Camera",
+  "components": [
+    {
+      "name": "NativeCameraComponent",
+      "manifest": "./src/components/NativeCameraComponent/manifest.json"
+    }
+  ],
+  "author": "gskachkov@gmail.com",
+  "description": "Native Camera",
+  "logo": "./example-logo.png",
+  "iosInstallScript": "./scripts/install_ios.sh",
+  "androidInstallScript": "./scripts/install_android.sh"
+}
